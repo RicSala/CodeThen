@@ -4,13 +4,14 @@ package rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
+public class Cycles {
 
 	public static void main(String[] args) {
 
 		assertEquals(hasCycle(new int[]{1, 2, 0}), true);
 		assertEquals(hasCycle(new int[]{3, 4, 1, -1, 2}), true);
-		assertEquals(hasCycle(new int[]{3, 4, 1, -1, 2}), false);
+		assertEquals(hasCycle(new int[]{1, 2, 3, 4, 1}), true);
+		assertEquals(hasCycle(new int[]{0, 0, 0, 0 , 1}), true);
 	}
 
 
