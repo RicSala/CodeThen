@@ -1,4 +1,4 @@
-package rectangle;
+package radio;
 
 /*SEPARAR LÓGICA Y PROMPTER*/
 
@@ -14,11 +14,16 @@ import java.util.List;
  */
 
 public class Radio {
+
 	private final String brand;
 	private int volume;
 	private Boolean on;
 	public static final int MAX_VOLUME = 10;
 	public static final int MIN_VOLUME = 0;
+
+	public List getMenu() {
+		return menu;
+	}
 
 	private List menu;
 
@@ -92,100 +97,9 @@ public class Radio {
 		on = !on;
 	}
 
-	/**
-	 * Prompts the user for action, showing the Radio object menu
-	 *
-	 * @return the chosen action
-	 */
-	private int promptForAction() {
-
-		int option = 0;
-		for (int i = 1; i <= this.menu.size(); i++) {
-			System.out.println(i + ") " + menu.get(i - 1));
-		}
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-		try {
-			option = Integer.parseInt(reader.readLine().toLowerCase());
-		} catch (IOException ioe) {
-			System.out.println("Ooops! Hemos tenido un problema al meter tu opción! Elige bien! (A ó B)");
-		}
-
-		return option;
-	}
-
-	/**
-	 * Given an action, performs the same
-	 *
-	 * @param action
-	 * @throws IOException Bubbled up exception.
-	 */
-	private void performAction(int action) throws IOException {
-		switch (action) {
-			case 1:
-				toggleOn();
-				break;
-
-			case 2:
-				volumeUp();
-				break;
-
-			case 3:
-				volumeDown();
-				break;
-
-			case 4:
-				System.out.println("Tu radio está a volumen " + getVolume());
-				break;
-			default:
-				System.out.println("¡Introduce un número de opción válido!");
-		}
-	}
 
 
-	/**
-	 * Main method just to use the created class
-	 * Prompts the user the first time that opens the radio, once the user decided he/she wants to use it, shows the
-	 * action menu and keep doing the selected action 'til the radio in turned off
-	 *
-	 * @param args
-	 * @throws IOException not handled.
-	 */
-	public static void main(String[] args) throws IOException {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-		Radio radio = new Radio("CodeRadio");
-		System.out.println("La marca de tu radio es " + radio.getBrand());
-		System.out.println("Al comprarla está a un volumen de " + radio.getVolume());
-		System.out.println("¿Que quieres hacer con ella?");
-		System.out.println("A) Nada, solo la he comprado para mirarla!");
-		System.out.println("B) ¡Quiero encenderla!");
-		String option = "";
-		int action;
-
-		try {
-			option = reader.readLine().toLowerCase();
-		} catch (IOException ioe) {
-			System.out.println("Ooops! Hemos tenido un problema al meter tu opción! Elige bien! (A ó B)");
-		}
-
-		if (option.equals("a")) {
-			System.out.println("Ok, pues nada, ¡Deu majo!");
-		} else if (option.equals("b")) {
-			System.out.printf("veamos que podemos hacer con ella...%n%n");
-			radio.toggleOn();
-			while (radio.isOn()) {
-
-				action = radio.promptForAction();
-				radio.performAction(action);
-
-			}
-
-		}
-		System.out.println("APAGANDO RADIO");
-
-
-	}
 
 
 }
