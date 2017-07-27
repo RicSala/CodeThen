@@ -1,5 +1,6 @@
 package rectangle;
 
+/*SEPARAR LÓGICA Y PROMPTER*/
 
 import java.io.BufferedReader;
 import java.io.IOException;

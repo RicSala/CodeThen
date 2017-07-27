@@ -1,8 +1,12 @@
-package rectangle;
+package smallExercises;
 
 
 import java.util.ArrayList;
 import java.util.List;
+
+/*TODO: 1) COMENTAR (ME QUEDA MÁS CLARO AHORA, IGUAL NO LO HE ENTENDIDO BIEN!: Puedes hacer `return` en cualquier momento de un método, incluso dentro de un `for`. Prueba a hacerlo para ahorrarte las variables booleanas.
+		FYI: Para valores primitivos, es mejor usar boolean, int, etc, siempre que sea posible (sólo es necesario en "genéricos" como `List<Integer>`). Verás que Java te convierte entre `int` y `Integer` automáticamente. (edited)
+*/
 
 public class Cycles {
 
@@ -12,6 +16,9 @@ public class Cycles {
 		assertEquals(hasCycle(new int[]{3, 4, 1, -1, 2}), true);
 		assertEquals(hasCycle(new int[]{1, 2, 3, 4, 1}), true);
 		assertEquals(hasCycle(new int[]{0, 0, 0, 0 , 1}), true);
+		assertEquals(hasCycle(new int[]{1, 2, 3, 4 , -1}), false);
+		assertEquals(hasCycle(new int[]{4, 4, 4, 4 , -1}), false);
+		assertEquals(hasCycle(new int[]{1, -1, 3, -1 , -1}), false);
 	}
 
 
@@ -40,7 +47,7 @@ public class Cycles {
 	 */
 	static boolean hasCycle(int[] numbers) {
 
-		Boolean hasCycle = false;
+		boolean hasCycle = false;
 
 		for (int i = 0; i < numbers.length && !hasCycle; i++) {
 			hasCycle = isCycle(numbers, i);
@@ -57,11 +64,11 @@ public class Cycles {
 	 */
 	private static Boolean isCycle(int[] array, Integer position) {
 		Boolean isCycle = false;
-		Integer index = position;
+		int index = position;
 		List<Integer> dependencies = new ArrayList<>();
 
 		dependencies.add(position);
-		while (isCycle == false && array[index] != -1) {
+		while (!isCycle && array[index] != -1) {
 			isCycle = dependencies.contains(array[index]);
 			dependencies.add(array[index]);
 			index = array[index];
