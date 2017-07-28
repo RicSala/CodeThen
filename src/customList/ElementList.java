@@ -71,6 +71,7 @@ class ElementList {
 	}
 
 
+
 	/**
 	 * given an index, deletes an {@link Element} of the {@link ElementList}
 	 * @param index
@@ -86,16 +87,17 @@ class ElementList {
 
 
 		if (index == 0) {   //si quito el primero, como no hay anterior, no hay que actualizar ningún next. //TODO: Borrar de la lista simplmente se hace quitándolo de la cadena?
+			//getElement(0).setNextElement(null); --> creo que no hace falta que haga null esto TODO: COMENTAR CON FERRAN
 			first = getElement(1);
-			getElement(0).setNextElement(null);
 			size--;         //puedo hacer esto porque sabemos que hay, al menos, uno
 			return true;
 		}
 
-		//TODO REVISAR, FALTA EL CASO "NORMAL"
+		getElement(index - 1).setNextElement(getElement(index +1));
 
 		if (index == size - 1) {                //si quito el último tengo que actualizar last. //TODO: CUESTA MENOS ESTO O HACER setLast() = getElement(size -1) al final?
 			last = getElement(size - 2);
+			last.setNextElement(null);
 		}
 
 		size--;

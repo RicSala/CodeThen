@@ -2,6 +2,10 @@ package customList;
 
 public class UnitTest {
 
+	/**
+	 * Unit test for the main methods of Classes {@link ElementList} and {@link Element}
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		testSize();
@@ -23,6 +27,8 @@ public class UnitTest {
 		elementList.add("Primero");
 		elementList.add("Segundo");
 		assertEquals(elementList.size(), 2);
+		elementList.add("Segundo");
+		assertEquals(elementList.size(), 3);
 
 	}
 
@@ -50,9 +56,10 @@ public class UnitTest {
 		assertEquals(elementList.size(), 4);
 		assertEquals(elementList.getLast().getObject().toString(), "Laia");
 		assertEquals(elementList.getFirst().getObject().toString(), "Ferran");
-
-
-
+		assertEquals(elementList.getElement(0).getNext().toString(), "Javi");
+		assertEquals(elementList.getElement(1).getNext().toString(), "Ricardo");
+		assertEquals(elementList.getElement(2).getNext().toString(), "Laia");
+		assertEquals(elementList.getElement(3).getNext(), null);  //TODO ver si esto era lo que le pasaba al otro método
 
 	}
 
@@ -77,9 +84,9 @@ public class UnitTest {
 
 	private static void testContains() {
 		ElementList elementList = new ElementList();
-		assertEquals(elementList.contains("Sí que lo contiene"), false);
-		elementList.add("Sí que lo contiene");
-		assertEquals(elementList.contains("Sí que lo contiene"), true);
+		assertEquals(elementList.contains("No tengo esto"), false);
+		elementList.add("Ahora sí que lo tengo");
+		assertEquals(elementList.contains("Ahora sí que lo tengo"), true);
 	}
 
 	private static void testDelete() {
@@ -87,6 +94,7 @@ public class UnitTest {
 		String alumno2 = "Javi";
 		String alumno3 = "Ricardo";
 		String alumno4 = "Laia";
+		String alumno5 = "Kris";
 
 		ElementList elementList = new ElementList();
 
@@ -94,26 +102,40 @@ public class UnitTest {
 		elementList.add(alumno2);
 		elementList.add(alumno3);
 		elementList.add(alumno4);
-		// {Ferran, Javi, Ricardo, Laia}
+		elementList.add(alumno5);
+		// {Ferran, Javi, Ricardo, Laia, Kris}
 
-
-		elementList.deleteElement(3);
-		// {Ferran, Javi, Ricardo}
-		assertEquals(elementList.getLast().getObject(), "Ricardo");
 
 		elementList.deleteElement(0);
-		// {Javi, Ricardo}
-		assertEquals(elementList.getFirst().getObject(), "Javi");
+		// {Javi, Ricardo, Laia, Kris}
+		assertEquals(elementList.getElement(0).getNext().toString(), "Ricardo");
+		assertEquals(elementList.getElement(1).getNext().toString(), "Laia");
+		assertEquals(elementList.getElement(2).getNext().toString(), "Kris");
+		assertEquals(elementList.getElement(3).getNext(), null);
+
 
 		elementList.deleteElement(1);
-		// {Javi}
-		assertEquals(elementList.size(), 1);
-		assertEquals(elementList.getFirst().getObject(), "Javi");
-		assertEquals(elementList.getLast().getObject(), "Javi");
+		// {Javi, Laia, Kris}
+		assertEquals(elementList.getElement(0).getNext().toString(), "Laia");
+		assertEquals(elementList.getElement(1).getNext().toString(), "Kris");
+		assertEquals(elementList.getElement(2).getNext(), null);
+		assertEquals(elementList.getFirst().getObject().toString(), "Javi");
+		assertEquals(elementList.getLast().getObject().toString(), "Kris");
+
+
+		elementList.deleteElement(2);
+		// {Javi, Laia}
+		assertEquals(elementList.getFirst().getObject().toString(), "Javi");
+		assertEquals(elementList.getLast().getObject().toString(), "Laia");
+		assertEquals(elementList.getFirst().getNext().toString(), "Laia");
+		assertEquals(elementList.getLast().getNext(), null);
+		assertEquals(elementList.size(), 2);
 		assertEquals(elementList.isEmpty(), false);
 
-		// {null} TODO: en realidad no es null, pero size es igual a zero...¿Debería hacerlo null?
+
 		elementList.deleteElement(0);
+		elementList.deleteElement(0);
+		//TODO: System.out.println(elementList.getElement(0)); //ESTO ME ESTÁ DICIENDO QUE EXISTE PERO VALE "NULL", debería mandar excepción?
 		assertEquals(elementList.isEmpty(), true);
 		assertEquals(elementList.getFirst(), null);
 		assertEquals(elementList.getLast(), null);
@@ -137,15 +159,6 @@ public class UnitTest {
 		elementList.add(alumno4);
 
 		assertEquals(elementList.toString(), "1) Ferran\n2) Javi\n3) Ricardo\n4) Laia\n");
-		// {Ferran, Javi, Ricardo, Laia}
-
-
-		/*Syst/em.out.println(elementList.getElement(0).getNext());
-		System.out.println(elementList.getElement(1).getNext());
-		System.out.println(elementList.getElement(2).getNext());
-*/
-		//assertEquals(elementList.toString(), "1) Ferran\n2) Javi\n3) Laia\n");
-
 	}
 
 	/** Checks that 2 values are equal; throws an exception if not. */
