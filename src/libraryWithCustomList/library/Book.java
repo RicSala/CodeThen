@@ -1,4 +1,6 @@
-package library;
+package libraryWithCustomList.library;
+
+import customList.ElementList;
 
 import java.util.List;
 
@@ -17,11 +19,11 @@ public class Book {
     etc.
 	 */
 
-	private List<Author> authors;
+	private ElementList authors;
 	private String title;
-	private List<Chapter> chapters;
+	private ElementList chapters;
 
-	public Book(List<Author> authors, String title, List<Chapter> chapter) {
+	public Book(ElementList authors, String title, ElementList chapter) {
 		this.authors = authors;
 		this.title = title;
 		this.chapters = chapter;
@@ -32,7 +34,8 @@ public class Book {
 	 */
 	public int getPages() {
 		int pages = 0;
-		for (Chapter chapter : chapters) {
+		for (int i = 0; i < chapters.size() - 1; i++) {
+			Chapter chapter = (Chapter) chapters.getElement(i).getObject();  //Todo: ¿Cómo puedo hacer para evitarme este cast? Sino, no reconoce numberOfPages.
 			pages += chapter.getNumberOfPages();
 		}
 		return pages;
@@ -44,7 +47,8 @@ public class Book {
 	public String authorsToString() {
 		String authorsString = "";
 
-		for (Author author : authors) {
+		for (int i = 0; i < authors.size() - 1; i++) {
+			Author author = (Author) authors.getElement(i).getObject();
 			authorsString += author.toString();
 		}
 		return authorsString;
@@ -64,8 +68,9 @@ public class Book {
 		bookOverview += authorsToString() + "%n%n%n";
 		bookOverview += "Table of contents:%n";
 		bookOverview += "-----------------%n%n";
-		for (Chapter chapter : chapters) {
-			bookOverview += + (chapters.indexOf(chapter) + 1) + " - " + chapter.getTitle() + ": page " + chapter.getPage() + " || Contains " + chapter.getNumberOfPages() + " pages %n";
+		for (int i = 0; i < chapters.size() - 1; i++) {
+			Chapter chapter = (Chapter) chapters.getElement(i).getObject();
+			bookOverview += + (i + 1) + " - " + chapter.getTitle() + ": page " + chapter.getPage() + " || Contains " + chapter.getNumberOfPages() + " pages %n";
 		}
 		bookOverview += "%n%nThe book has " + getPages() + " pages in total";
 	return String.format(bookOverview);

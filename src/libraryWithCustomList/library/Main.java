@@ -1,4 +1,6 @@
-package library;
+package libraryWithCustomList.library;
+
+import customList.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,8 +13,8 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		List<Author> authors;
-		List<Chapter> chapters;
+		ElementList authors;
+		ElementList chapters;
 
 
 		authors = createSomeAuthors(); //in a serious program this shouldn't be here! :P
@@ -20,11 +22,10 @@ public class Main {
 		Book book = new Book(authors,"Aprendiendo a programar", chapters);
 		System.out.println(book);
 
-
 	}
 
-	private static List<Chapter> createSomeChapters() { //This could be prompter to the user
-		List<Chapter> chapters = new ArrayList<>();
+	private static ElementList createSomeChapters() { //This could be prompter to the user
+		ElementList chapters = new ElementList();
 
 		Chapter chapter = new Chapter("Introducción a la programación", 2, 22);
 		chapters.add(chapter);
@@ -36,8 +37,8 @@ public class Main {
 		return chapters;
 	}
 
-	private static List<Author> createSomeAuthors() { //This could be prompter to the user
-		List<Author> authors = new ArrayList<>();
+	private static ElementList createSomeAuthors() { //This could be prompter to the user
+		ElementList authors = new ElementList();
 
 		Author author = new Author("Ricardo", new Date(531360000000L), "Barcelona");
 		authors.add(author);
