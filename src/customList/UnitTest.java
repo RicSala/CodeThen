@@ -27,7 +27,7 @@ public class UnitTest {
 		elementList.add("Primero");
 		elementList.add("Segundo");
 		assertEquals(elementList.size(), 2);
-		elementList.add("Segundo");
+		elementList.add("Terceru!");
 		assertEquals(elementList.size(), 3);
 
 	}

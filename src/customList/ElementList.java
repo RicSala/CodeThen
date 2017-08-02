@@ -1,6 +1,6 @@
 package customList;
 
-class ElementList {
+public class ElementList {
 	private int size;
 	private Element first;
 	private Element last;
