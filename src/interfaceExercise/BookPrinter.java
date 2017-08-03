@@ -2,7 +2,7 @@ package interfaceExercise;
 
 import library.Book;
 
-public interface BookInterface  {
+public interface BookPrinter {
 
 	/**
 	 * @param book

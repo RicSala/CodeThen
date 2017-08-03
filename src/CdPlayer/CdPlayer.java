@@ -24,7 +24,7 @@ public class CdPlayer {
 	}
 
 	public void nextSong() {
-		if (songNow == cd.getSongs().size()-1) {
+		if (songNow == cd.getSongs().size()-1) { //si la canción es la última, el disco vuelve a empezar
 			songNow = 0;
 		} else {
 			songNow++;

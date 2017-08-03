@@ -4,7 +4,7 @@ import library.Author;
 import library.Book;
 import library.Chapter;
 
-public class HtmlBookPrinter implements BookInterface {
+public class HtmlBookPrinter implements BookPrinter {
 
 	@Override
 	public String bookToString(Book book) {

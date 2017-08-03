@@ -5,11 +5,7 @@ import library.Author;
 import library.Book;
 import library.Chapter;
 
-import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,12 +18,12 @@ public class PrintingBooks {
 
 		Book book = new Book(authors, "Aprendiendo a programar", chapters);
 
-		BookInterface htmlBookPrinter = new HtmlBookPrinter();
+		BookPrinter htmlBookPrinter = new HtmlBookPrinter();
 
 		System.out.println("Libro en " + htmlBookPrinter.getFormat() + "\n");
 		System.out.println(htmlBookPrinter.bookToString(book));
 
-		BookInterface markdownBookPrinter = new MarkdownBookPrinter();
+		BookPrinter markdownBookPrinter = new MarkdownBookPrinter();
 
 		System.out.println("\n\n\n");
 

@@ -33,7 +33,7 @@ public class Author {
 	@Override
 	public String toString() {
 		String authorDescription;
-		authorDescription = name + ", currently living in " + cityofSpain + " | " + "  " + dateToString(dateOfBirth) + "%n";
+		authorDescription = name + ", currently living in " + cityofSpain + " | " + "  " + dateToString(dateOfBirth);
 		return authorDescription;
 	}
 

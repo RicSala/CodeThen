@@ -17,7 +17,21 @@ public class Book {
     etc.
 	 */
 
+	public List<Chapter> getChapters() {
+		return chapters;
+	}
+
+	public List<Author> getAuthors() {
+
+		return authors;
+	}
+
 	private List<Author> authors;
+
+	public String getTitle() {
+		return title;
+	}
+
 	private String title;
 	private List<Chapter> chapters;
 

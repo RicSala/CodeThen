@@ -46,6 +46,8 @@ public class MusicParty {
 		}
 
 
+
+
 		Cd cd = new Cd("Mezcla Ricardo", songs);
 
 		CdPlayer cdPlayer = new CdPlayer(); //Instantiate a CdPlayer  --> El cacharrito con el que voy a jugar

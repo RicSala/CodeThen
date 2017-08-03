@@ -69,6 +69,7 @@ public class Rectangle {
 		if ( ! actual.equals(expected) ) {
 			throw new RuntimeException("the actual value " + actual
 					+ " is not equal to the expected " + expected);
+
 		}
 	}
 
