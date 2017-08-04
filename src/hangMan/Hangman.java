@@ -1,9 +1,11 @@
+package hangMan;
+
 public class Hangman {
 
   public static void main(String[] args) {
 
     if (args.length == 0) {
-      //POR QUÉ ES ARGS.LENGTH Y NO ARGS.LENGTH()??????
+      //POR QUÉ ES ARGS.LENGTH Y NO ARGS.LENGTH()?????? PORQUE ES UNA PROPIEDAD NO UN MÉTODO
       System.out.println("Usage: Java Hangman <answer>");
       System.exit(1);
     }

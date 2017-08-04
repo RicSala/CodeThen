@@ -2,7 +2,7 @@ package battleCards.cardGame;
 
 public class CardGameTest {
 
-	//TODO: PENDINT HACER MÁS TEST!
+	//TODO: PENDING HACER MÁS TEST!
 
 	public static void runTest() {
 		testShuffle();
@@ -19,8 +19,6 @@ public class CardGameTest {
 		int size = cardDeck.getCardDeck().size();
 		cardDeck.shuffle();
 		assertEquals(cardDeck.getCardDeck().size(), size);
-
-
 	}
 
 
@@ -29,7 +27,7 @@ public class CardGameTest {
 	 */
 	private static void assertEquals(Object actual, Object expected) {
 		if (!(actual == null && expected == null) && !actual.equals(expected)) {
-			throw new RuntimeException("not equals!! shoud be " + expected + " and its " + actual);
+			throw new RuntimeException("not equals!! should be " + expected + " and it's " + actual);
 		}
 	}
 

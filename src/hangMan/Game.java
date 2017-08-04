@@ -1,3 +1,5 @@
+package hangMan;
+
 public class Game {
   public final int MAX_MISSES = 7;
 

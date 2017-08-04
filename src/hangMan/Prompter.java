@@ -1,3 +1,5 @@
+package hangMan;
+
 import java.util.Scanner;
 
 public class Prompter {

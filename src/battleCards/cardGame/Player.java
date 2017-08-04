@@ -8,7 +8,7 @@ import java.util.Scanner;
 /**
  * Player Class.
  * Properties:  name: Name of the player
- *              carHand: List of the cards "in the hand" of the player (List<Cards>)
+ *              cardHand: List of the cards "in the hand" of the player (List<Cards>)
  */
 public class Player {
 	private String name;
@@ -25,7 +25,6 @@ public class Player {
 	}
 
 	/**
-	 *
 	 * @return: Player name: [Player.name]
 	 *          Mano actual: [Player.cardHand]
 	 */
@@ -44,35 +43,8 @@ public class Player {
 		return cardDeck.pickCard(); //Todo: FERRAN, estoy llamando a dos métodos de la misma forma, sé que no pasa nada pero...¿Es buena práctica? A mí me queda muy claro...uno hace la acción el otro la recibe, pero tiene sentido que la acción se llame igual...¿Cómo se suele hacer?
 	}
 
-	/**
-	 *
-	 * @return
-	 * TODO:    Ferran, cuando hablo de que no me convence la estructura, me refiero a este método por ejemplo.
-	 * TODO:    Porque...¿No tendría más sentido que estuviese en "Game" o algo fuera de la clase player? Que la mano está completa depende de cuantas cartas se puedan coger en ese juego...
-	 */
-	public boolean isCardHandComplete() {
-		return cardHand.size() == 3;
-	}
 
-	/**
-	 * Given a card, Prompts the user to decide if he wants to keep it or discard it.
-	 * @param card
-	 */
-	public void keepOrDiscard(Card card) {
 
-		if (cardHand.size() > 2) {
-			throw new RuntimeException("No deberías poder coger más de tres cartas!");
-		}
-
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Te quieres quedar esta carta? (Y/N)\nCarta: " + card);  //TODO: Ferran, Por qué no me está pidiendo que haga un try / catch??
-		String option = scanner.nextLine();                                         //TODO: POR EJEMPLO, EN ESTE MÉTODO COMO SEPARO EL PROMPT?
-		if (option.equals("N")) {
-			System.out.println("Has descartado la carta: " + card);
-		} else {
-			cardHand.add(card);
-		}
-	}
 
 	public String getName() {
 		return name;

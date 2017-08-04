@@ -3,53 +3,33 @@ package battleCards;
 import battleCards.cardGame.CardDeck;
 import battleCards.cardGame.Player;
 
+//TODO: EL JUEGO NO NECESITA EL CARDDECK??? PUEDE QUE TENGA SENTIDO --> LAS REGLAS DEL JUEGO SON LAS MISMAS CON INDEPENDENCIA DE LA BARAJA!
+
 class Game {
 
+	public static final int MAX_CARDS = 3;
 	private Player playerA;
 	private Player playerB;
-	private CardDeck cardDeck;
 
-	public Game(CardDeck cardDeck) {
-		this.cardDeck = cardDeck;
-	}
-
-
-	public Player play() {
-
-		pickCards();
-		Player winner = fight();
-		return winner;
+	public Game() {
 	}
 
 	/**
-	 * Given a cardDeck and two players, it prompts them pick cards in turns five times.
+	 * Give a Player with his/her cardHand, it
 	 *
-	 * @throws RuntimeException if any of the Player's cardHand is not complete at the end of the pick cards phase.
+	 * @return the values of the cardHand. (i.e. the sum of the values of the different Cards)
 	 */
-	public void pickCards() {
+	private int[] getcardHandValues(Player player) {  //TODO ---> LO SUYO SERÍA HACER UNA CLASE CARHAND
+		int[] values = new int[3];
 
-		for (int i = 0; i < 5 && !(playerA.isCardHandComplete() && playerB.isCardHandComplete()); i++) {
+		values[0] = player.getCardHand().get(0).getMagic() + player.getCardHand().get(1).getMagic() + player.getCardHand().get(2).getMagic();
+		values[1] = player.getCardHand().get(0).getStrength() + player.getCardHand().get(1).getStrength() + player.getCardHand().get(2).getStrength();
+		values[2] = player.getCardHand().get(0).getIntelligence() + player.getCardHand().get(1).getIntelligence() + player.getCardHand().get(2).getIntelligence();
 
-			System.out.println();
-			System.out.println("Reparto número: " + (i + 1) + "\n");
-			if (!playerA.isCardHandComplete()) {
-				System.out.println(playerA.getName());
-				playerA.keepOrDiscard(playerA.pickCard(cardDeck));
-			}
+		//System.out.println(player.getName() + ", tu mano tiene valores: " + values[0] + " - " + values[1] + " - " + values[2] + "\n");
 
-			if (!playerB.isCardHandComplete()) {
-				System.out.println(playerB.getName());
-				playerB.keepOrDiscard(playerB.pickCard(cardDeck));
-			}
-		}
-
-		if (!playerA.isCardHandComplete() || !playerB.isCardHandComplete()) {
-			throw new RuntimeException("¡Tienes que coger al menos 3 cartas para poder jugar una partida!"); //TODO: Lanzo una excepción para el caso que no cojan suficientes cartas...Me gustaría poder "volver a empezar el programa (tiene sentido), ¿Cómo lo hago? Como hago dentro de un programa "javac ... java..."
-		}
-		System.out.println(playerA.toString());
-		System.out.println(playerB.toString());
+		return values;
 	}
-
 
 	/**
 	 * Given two Players with their cardHands (3 {@link battleCards.cardGame.Card}) it determines the winner.
@@ -73,23 +53,15 @@ class Game {
 		} else return null;
 	}
 
-
 	/**
-	 * Give a Player with his/her cardHand, it
 	 *
-	 * @return the values of the cardHand. (i.e. the sum of the values of the different Cards)
+	 * @return
+	 * TODO:    ME LO TRAIGO AQUÍ PORQUE CREO QUE TIENE SENTIDO QUE EL QUE TE DIGA SI PUEDES COGER MÁS CARTAS SEA EL JUEGO...
 	 */
-	private int[] getcardHandValues(Player player) {  //TODO ---> LO SUYO SERÍA HACER UNA CLASE CARHAND
-		int[] values = new int[3];
-
-		values[0] = player.getCardHand().get(0).getMagic() + player.getCardHand().get(1).getMagic() + player.getCardHand().get(2).getMagic();
-		values[1] = player.getCardHand().get(0).getStrength() + player.getCardHand().get(1).getStrength() + player.getCardHand().get(2).getStrength();
-		values[2] = player.getCardHand().get(0).getIntelligence() + player.getCardHand().get(1).getIntelligence() + player.getCardHand().get(2).getIntelligence();
-
-		//System.out.println(player.getName() + ", tu mano tiene valores: " + values[0] + " - " + values[1] + " - " + values[2] + "\n");
-
-		return values;
+	public boolean isCardHandComplete(Player player) {
+		return player.getCardHand().size() == MAX_CARDS;
 	}
+
 
 	public void setPlayerA(Player playerA) {
 		this.playerA = playerA;
