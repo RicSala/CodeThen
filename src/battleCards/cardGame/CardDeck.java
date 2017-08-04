@@ -6,6 +6,11 @@ public class CardDeck {  //Todo FERRAN: Creo que lo podría haber hecho extendie
 
 	private List<Card> cardDeck = new ArrayList<>();
 
+	/**
+	 * Constructor of CardDeck. It creates the cards and fill the cardDeck with them.
+	 * The sum of the properties of any give card must be <11.
+	 * Any property of any card must be > 1.
+	 */
 	public CardDeck() {
 		Card card;
 		System.out.println("Generando nueva baraja......\n");
@@ -25,9 +30,14 @@ public class CardDeck {  //Todo FERRAN: Creo que lo podría haber hecho extendie
 	}
 
 
+	/**
+	 * Shuffles the cardDeck.
+	 * Creates a Card array of the same size os the cardDeck. Then iterate the newly created array an assign to each
+	 * position i a random card taken from the original deck. Then returns the shuffled deck converted to ArrayList.
+	 */
 	public void shuffle() {
 		Random random = new Random();
-		System.out.println("Removiendo la baraja......\n");
+		System.out.println("Removiendo la baraja......\n"); //TODO: Ferran, no sé si en las clases conviene meter esto, me parece que "enguarra" un poco...
 		Card[] shuffledDeck = new Card[cardDeck.size()]; //Lo hago con un array para poder crearla con una tamaño fijo y acceder las posiciones antes para ver si están vacías.
 		int i = 0;
 		while (cardDeck.size() > 0) {
@@ -38,6 +48,7 @@ public class CardDeck {  //Todo FERRAN: Creo que lo podría haber hecho extendie
 		this.cardDeck = new ArrayList<>(Arrays.asList(shuffledDeck)); //Todo: Estoy seguro de que ésta forma no es nada eficiente... (en general, el método). Podría hacer un shuffle con Collections.
 	}
 
+
 	@Override
 	public String toString() {
 		String cardDeckString = "";
@@ -47,6 +58,11 @@ public class CardDeck {  //Todo FERRAN: Creo que lo podría haber hecho extendie
 		return cardDeckString;
 	}
 
+	/**
+	 * Removes the card located at index = size - 1 and
+	 *
+	 * @return the cardPicked (removed)
+	 */
 	public Card pickCard() {
 		Card carPicked;
 		carPicked = this.getCardDeck().get(this.getCardDeck().size() - 1);
