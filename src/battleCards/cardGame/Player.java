@@ -50,7 +50,7 @@ public class Player {
 	 * TODO:    Ferran, cuando hablo de que no me convence la estructura, me refiero a este método por ejemplo.
 	 * TODO:    Porque...¿No tendría más sentido que estuviese en "Game" o algo fuera de la clase player? Que la mano está completa depende de cuantas cartas se puedan coger en ese juego...
 	 */
-	public boolean isCardHancComplete() {
+	public boolean isCardHandComplete() {
 		return cardHand.size() == 3;
 	}
 
@@ -66,7 +66,7 @@ public class Player {
 
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Te quieres quedar esta carta? (Y/N)\nCarta: " + card);  //TODO: Ferran, Por qué no me está pidiendo que haga un try / catch??
-		String option = scanner.nextLine();
+		String option = scanner.nextLine();                                         //TODO: POR EJEMPLO, EN ESTE MÉTODO COMO SEPARO EL PROMPT?
 		if (option.equals("N")) {
 			System.out.println("Has descartado la carta: " + card);
 		} else {

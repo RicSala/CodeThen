@@ -1,5 +1,6 @@
 package battleCards;
 
+import battleCards.cardGame.Card;
 import battleCards.cardGame.CardDeck;
 import battleCards.cardGame.CardGameTest;
 import battleCards.cardGame.Player;
@@ -11,17 +12,13 @@ public class Main {
 	public static void main(String[] args) {
 
 		CardDeck cardDeck = new CardDeck();
-		cardDeck.shuffle();
 		Game game = new Game(cardDeck);
+		Prompter prompter = new Prompter(game, cardDeck);
 
-		Player winner = game.play(cardDeck);
-
-		if (winner.getName() != null) {
-			System.out.println(winner.getName() + " WINS!!!!");
-		} else {
-			System.out.println("¡WE HAVE A TIE!");
+		int option = 1;
+		while (option != 0) {
+			prompter.showMenu();
 		}
-
 
 		CardGameTest.runTest(); //Todo: FERRAN, sería ésta la forma correcta de hacerlo? static y desde la clase directamente ¿o instancio los test?
 

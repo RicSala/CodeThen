@@ -11,6 +11,21 @@ public class CardDeck {  //Todo FERRAN: Creo que lo podría haber hecho extendie
 	 * The sum of the properties of any give card must be <11.
 	 * Any property of any card must be > 1.
 	 */
+
+	public CardDeck() {
+		Card card;
+
+		for (int i = 1; i < 10; i++){
+			for (int j = 1; j < 10; j++) {
+				for (int k = 1; k < 10 && i + j + k <= 10; k ++) {
+					card = new Card(i, j, k);
+					cardDeck.add(card);
+				}
+			}
+		}
+	}
+
+	/* TODO: NO ESTÁ MAL PERO ES ALGO ENREVERSADO!
 	public CardDeck() {
 		Card card;
 		System.out.println("Generando nueva baraja......\n");
@@ -24,6 +39,7 @@ public class CardDeck {  //Todo FERRAN: Creo que lo podría haber hecho extendie
 			}
 		}
 	}
+	*/
 
 	public List<Card> getCardDeck() {
 		return cardDeck;
@@ -35,7 +51,21 @@ public class CardDeck {  //Todo FERRAN: Creo que lo podría haber hecho extendie
 	 * Creates a Card array of the same size os the cardDeck. Then iterate the newly created array an assign to each
 	 * position i a random card taken from the original deck. Then returns the shuffled deck converted to ArrayList.
 	 */
+
 	public void shuffle() {
+		int size = cardDeck.size();
+		Card cardHolder;
+
+		for (int i = 0; i < size; i++) {
+			cardHolder = cardDeck.remove(i);
+			Random random = new Random();
+			cardDeck.add(random.nextInt(size-1), cardHolder);
+		}
+	}
+
+
+	/*TAMBIÉN FUNCIONA, ES UNA ALTERNATIVA MÁS "CARA"
+	public void shuffleAlt() {
 		Random random = new Random();
 		System.out.println("Removiendo la baraja......\n"); //TODO: Ferran, no sé si en las clases conviene meter esto, me parece que "enguarra" un poco...
 		Card[] shuffledDeck = new Card[cardDeck.size()]; //Lo hago con un array para poder crearla con una tamaño fijo y acceder las posiciones antes para ver si están vacías.
@@ -47,6 +77,7 @@ public class CardDeck {  //Todo FERRAN: Creo que lo podría haber hecho extendie
 		}
 		this.cardDeck = new ArrayList<>(Arrays.asList(shuffledDeck)); //Todo: Estoy seguro de que ésta forma no es nada eficiente... (en general, el método). Podría hacer un shuffle con Collections.
 	}
+	*/
 
 
 	@Override
