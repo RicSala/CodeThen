@@ -34,4 +34,12 @@ public class Card {
 	public String toString() {
 		return "Magic: " + magic + " | " + "Strength: " + strength + " | " + "Intelligence: " + intelligence;
 	}
+
+	@Override //TODO: COMENTAR CON FERRAN
+	public boolean equals(Object card) {
+		card = (Card) card;
+		return (this.magic == ((Card) card).getMagic() &&
+		this.intelligence == ((Card) card).getIntelligence() &&
+		this.strength == ((Card) card).getStrength());
+	}
 }

@@ -9,14 +9,12 @@ import battleCards.cardGame.Player;
 import java.util.Scanner;
 
 public class Prompter {
-	private final CardDeck cardDeck;
 	private Game game;
 	private Scanner scanner;
 
-	public Prompter(Game game, CardDeck cardDeck) {
+	public Prompter(Game game) {
 
 		this.game = game;
-		this.cardDeck = cardDeck;
 		scanner = new Scanner(System.in);
 	}
 
@@ -30,7 +28,7 @@ public class Prompter {
 		int option = scanner.nextInt();
 
 		switch (option) {
-			case 1: cardDeck.shuffle();
+			case 1: game.getCardDeck().shuffle();
 				System.out.println("Removiendo la baraja...");
 				break;
 			case 2:
@@ -40,7 +38,7 @@ public class Prompter {
 				showWinner(winner);
 				break;
 			case 3:
-				System.out.println(cardDeck);
+				System.out.println(game.getCardDeck());
 				break;
 			case 0:
 				System.out.println("¡Gracias por jugar!");
@@ -56,12 +54,12 @@ public class Prompter {
 			System.out.println("Reparto número: " + (i + 1));
 			if (!game.isCardHandComplete(game.getPlayerA())) {
 				System.out.println(game.getPlayerA().getName());
-				keepOrDiscard(game.getPlayerA(), game.getPlayerA().pickCard(cardDeck));
+				keepOrDiscard(game.getPlayerA(), game.getPlayerA().pickCard(game.getCardDeck()));
 			}
 
 			if (!game.isCardHandComplete(game.getPlayerB())) {
 				System.out.println(game.getPlayerB().getName());
-				keepOrDiscard(game.getPlayerB(), game.getPlayerB().pickCard(cardDeck));
+				keepOrDiscard(game.getPlayerB(), game.getPlayerB().pickCard(game.getCardDeck()));
 			}
 		}
 

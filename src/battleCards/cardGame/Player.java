@@ -1,10 +1,5 @@
 package battleCards.cardGame;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-
 /**
  * Player Class.
  * Properties:  name: Name of the player
@@ -12,15 +7,15 @@ import java.util.Scanner;
  */
 public class Player {
 	private String name;
-	private List<Card> cardHand;
+	private CardHand cardHand;
 
 	public Player(String name) {
 		this.name = name;
-		cardHand = new ArrayList<>();
+		cardHand = new CardHand();
 	}
 
 
-	public List<Card> getCardHand() {
+	public CardHand getCardHand() {
 		return cardHand;
 	}
 

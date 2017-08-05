@@ -8,10 +8,12 @@ import battleCards.cardGame.Player;
 class Game {
 
 	public static final int MAX_CARDS = 3;
+	private final CardDeck cardDeck;
 	private Player playerA;
 	private Player playerB;
 
-	public Game() {
+	public Game(CardDeck cardDeck) {
+		this.cardDeck = cardDeck;
 	}
 
 	/**
@@ -77,5 +79,9 @@ class Game {
 
 	public Player getPlayerB() {
 		return playerB;
+	}
+
+	public CardDeck getCardDeck() {
+		return cardDeck;
 	}
 }
